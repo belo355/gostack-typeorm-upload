@@ -11,24 +11,6 @@ interface Balance {
 // TODO: regularizar balance
 @EntityRepository(Transaction)
 class TransactionsRepository extends Repository<Transaction> {
-  // public async getBalance(): Promise<Balance> {
-  //   const sumIncome = await this.createQueryBuilder()
-  //     .select("SUM(value)")
-  //     .where("type= 'income'")
-  //     .getRawOne();
-  //   const sumOutcome = await this.createQueryBuilder()
-  //     .select("SUM(value)")
-  //     .where("type= 'outcome'")
-  //     .getRawOne();
-  //   const total = Number(sumIncome) - Number(sumOutcome);
-  //   console.log(total);
-  //   return {
-  //     income: sumIncome,
-  //     outcome: sumOutcome,
-  //     result: total,
-  //   };
-  // }
-
   public async getBalance(): Promise<Balance> {
     const transactions = await this.find();
 
@@ -53,7 +35,12 @@ class TransactionsRepository extends Repository<Transaction> {
       }
     );
     const total = income - outcome;
-    return { income, outcome, total };
+    return {
+      transactions,
+      income,
+      outcome,
+      total,
+    };
   }
 }
 

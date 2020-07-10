@@ -6,6 +6,7 @@ import categoriesRouter from "./categories.routes";
 const routes = Router();
 
 routes.use("/transactions", transactionsRouter);
+routes.use("/transactions/delete", transactionsRouter);
 routes.use("/categories", categoriesRouter);
 
 export default routes;
