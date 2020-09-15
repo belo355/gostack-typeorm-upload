@@ -3,6 +3,7 @@ import { getCustomRepository } from "typeorm";
 import multer from "multer";
 
 import TransactionsRepository from "../repositories/TransactionsRepository";
+import CategoryRepository from "../repositories/CategoryRepository";
 import CreateTransactionService from "../services/CreateTransactionService";
 import DeleteTransactionService from "../services/DeleteTransactionService";
 import ImportTransactionsService from "../services/ImportTransactionsService";
@@ -15,7 +16,11 @@ const upload = multer(uploadConfig);
 
 transactionsRouter.get("/", async (request, response) => {
   const transactionRepository = getCustomRepository(TransactionsRepository);
+  const categoryRepository = getCustomRepository(CategoryRepository)
   const transactions = await transactionRepository.getBalance();
+  // const category = await categoryRepository.findOne(transactions.category_id);
+
+  // const transactionCategory = concat(transactions, category);
 
   return response.status(200).json(transactions);
 });

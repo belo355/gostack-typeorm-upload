@@ -9,8 +9,8 @@ import CreateCategoryService from "../services/CreateCategoryService";
 const categoriesRouter = Router();
 
 categoriesRouter.get("/", async (request, response) => {
-  const cateogryRepository = getCustomRepository(CategoryRepository);
-  const categories = await cateogryRepository.find();
+  const categoryRepository = getCustomRepository(CategoryRepository);
+  const categories = await categoryRepository.find();
 
   return response.status(200).json(categories);
 });
